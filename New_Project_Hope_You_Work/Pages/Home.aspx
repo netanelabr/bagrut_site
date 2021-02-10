@@ -7,7 +7,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="mainArea" runat="server">
          שלום ברוכים הבאים לאתר שלי
         <br />
-        כאן תוכלו לראות תמונות של מכוניות מסוג שברולט
+        
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="footer" runat="server">           
 </asp:Content>

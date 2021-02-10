@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,94 +10,193 @@ namespace New_Project_Hope_You_Work.Pages
 {
     public partial class regForm : System.Web.UI.Page
     {
-        protected string FirstName, LastName;        
+        protected string FirstName, LastName, FirstNError, LastNError;
         protected string Password, VerPass, PassError;
         protected string Email, EmailError;
         protected string Gender, GenError;
         protected string FavCar, FavCarError;
         protected string MultiLine, MultiLineError;
+        protected string DateOfBirth, DOBError;
+        protected string admin;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+
+
+
+
             if (Request.Form["firstName"] != null)
+            {
+                checkAll();
+            }
+        }
+        void checkAll()
+        {
+            if (Request.Form["firstName"] != null && Request.Form["firstName"].ToString() != "")//בדיקת שם פרטי
             {
                 FirstName = Request.Form["firstName"].ToString();
             }
-            if (Request.Form["lastName"] != null)
+            else
+            {
+                FirstNError = "חובה למלא שם פרטי";
+            }
+
+            if (Request.Form["lastName"] != null && Request.Form["lastName"].ToString() != "")//בדיקת שם משפחה
             {
                 LastName = Request.Form["lastName"].ToString();
             }
-            if (PassCheck() == "")
+            else
             {
-                Password = Request.Form["password"].ToString();
-                PassError = PassCheck();
+                LastNError = "חובה למלא שם משפחה";
+            }
+
+            PassError = PasswordCheck();//בדיקת סיסמה
+
+            if (EmailCheck() == true)//בדיקת אימייל
+            {
+                DAL dal;
+                DataTable dt;
+                string db = MapPath("~/App_Data/MyDatabase.mdf");
+                dal = new DAL(db);
+                string sql = "select* from users";
+                dt = dal.GetDataTable(sql);
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    if (Request.Form["email"].ToString() == dt.Rows[i]["email"].ToString())
+                    {
+                        EmailError = "האימייל כבר תפוס אנא השתמש באימייל אחר";
+                    }
+                    else
+                    {
+                        Email = Request.Form["email"].ToString();
+                    }
+                }
             }
             else
             {
-                PassError = PassCheck();
+                EmailError = "אנא רשום אימייל תקין";
             }
 
-            if (Request.Form["email"] != null)
-            {
-                Email = Request.Form["email"].ToString();
-            }
-            if (Request.Form["gender"] != null)
+            if (Request.Form["gender"] != null && Request.Form["gender"].ToString() != "")//בדיקה עם נבחר מין
             {
                 Gender = Request.Form["gender"].ToString();
             }
-            if (Request.Form["favCar"] != null)
+            else
             {
-                FavCar = Request.Form["favCar"].ToString();
+                GenError = "חובה לבחור מין";
             }
-            if (Request.Form["multiLine"] != null)
+
+            if (Request.Form["favCar"] != null)//בדיקה אם נבחר מכונית אהובה
+            {
+                string[] h = Request.Form["favCar"].ToString().Split(',');
+                FavCar = "";
+                for (int i = 0; i < h.Length; i++)
+                {
+                    FavCar += h[i] ;
+                }
+            }
+            else
+            {
+                FavCarError = "חובה לבחור סוג מכונית אהובה";
+            }            
+
+            if (Request.Form["multiLine"] != null && Request.Form["multiLine"].ToString() != "")//בדיקה אם כתבו
             {
                 MultiLine = Request.Form["multiLine"].ToString();
             }
-           
+            else
+            {
+                MultiLineError = "חובה לכתוב על המכונית הראשונה,\n אם לא היה תכתוב לא היה";
+            }
+
+            if (Request.Form["dateOfBirth"] != "a")//בדיקה אם הוכנס שנת לידה
+            {
+                DateOfBirth = Request.Form["dateOfBirth"].ToString();
+            }
+            else
+            {
+                DOBError = "חובה לבחור שנת לידה";
+            }
+
+            if (EmailError == null && MultiLineError == null && FirstNError == null && LastNError == null && FavCarError == null && GenError == null && PassError == null )//לבדוק שאין שום תקלה בהרשמה
+            {
+                DAL dal;
+                string db = MapPath("~/App_Data/MyDatabase.mdf");
+                dal = new DAL(db);
+                string sql = "insert into users (email, firstName, lastName, password, gender, favoriteCar, firstCar, dateOfBirth, admin)" +
+                    "values ('"+Email+"', N'"+FirstName + "', N'" + LastName + "', '" + Password + "', '" + Gender + "', '" + FavCar + "', N'" + MultiLine + "', '" + DateOfBirth + "', 'no') ";
+                dal.UpdateDB(sql);
+
+
+                UpdateSession();          
+            }
         }
-        string PassCheck()
+
+
+        bool EmailCheck()
+        {
+            Email = Request.Form["email"];
+            if (Email == null)
+            {
+                return false;
+            }
+            int begin = Email.IndexOf('@');
+            int end = Email.LastIndexOf('@');
+            if (begin > 0 && begin == end)
+            {
+                int period = Email.LastIndexOf('.');
+                if (period > begin)
+                {
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
+        string PasswordCheck()
         {
             if (Request.Form["password"] == null || Request.Form["verPassword"] == null)
-                return "Please Reenter The Password";
+                return "הכנס את הסיסמה מחדש";
             Password = Request.Form["password"].ToString();
             VerPass = Request.Form["verPassword"].ToString();
             if (Password != VerPass)
             {
-                return "Passwords Must Match";
+                return "על הסיסמאות להתאים";
             }
 
             if (Password.Length <= 3)
             {
-                return "Password Must Be Longer Then Three Characters";
+                return "על הסיסמה להיות ארוכה מ3 אותיות";
             }
-                int counter = 0;
-                for (int i = 0; i < Password.Length; i++)
+            bool letter = false;
+            bool num = false;
+            for (int i = 0; i < Password.Length; i++)
+            {
+                if (Password[i] >= 'a' && Password[i] <= 'z' || Password[i] >= 'A' && Password[i] <= 'Z')
                 {
-                    if (Password[i] != VerPass[i])
-                    {
-                        return "Passwords Must Match";
-                    }
-                    if(Password[i]>='a' && Password[i] <= 'z')
-                    { 
-                        counter++;
-                    }
-                    if(Password[i] >= 0 && Password[i] <= 9)
-                    {
-                        counter++;
-                    }
-                    
+                    letter = true;
                 }
-                if (counter >= 2)
+                if (Password[i] >= '0' && Password[i] <= '9')
                 {
-                    return "Passeord Must Have Letters And Numbers";
+                    num = true;
                 }
-                else
-                    return "";
+
+            }
+            if (letter != true || num != true)
+            {
+                return "הסיסמה חייבת להכיל אותיות באנגלית ומספרים";
+            }
+            else
+                return null;
             
            
         }
-        //string EmailCheck()
-        //{
-
-        //}
+        void UpdateSession()
+        {
+            Session["firstName"] = FirstName;
+            Session["email"] = Email;
+        }
     }
 }

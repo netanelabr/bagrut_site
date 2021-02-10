@@ -14,7 +14,7 @@
     background-color: royalblue;
     text-align: center;
     font-family: Arial;
-    font-size: xx-large;
+    font-size: 50px;
     color: black;
     border-radius: 20px;
     margin-right: 200px;
@@ -27,7 +27,7 @@
     height: 500px;
     padding-right: 20px;
     right: 20px;
-    border-width: 4px;
+    border-width: 20px;
     top: 145px;
     background-color: beige;
     border-radius: 20px;
@@ -39,9 +39,9 @@
     direction: rtl;
     /*position: absolute;*/
     width: 75%;
-    height: 480px;
     padding-right: 20px;
     padding-left: 20px;
+    padding-top:10px;
     right: 200px;
     border-width: 4px;
     top: 145px;
@@ -53,7 +53,7 @@
 }
 
 #footerContent {
-    direction: rtl;
+    direction: ltr;
     /*position: absolute;*/
     width: 75%;
     height: 20px;
@@ -61,11 +61,11 @@
     right: 200px;
     top: 675px;
     border-width: 4px;
-    background-color: darkblue;
+    background-color: beige;
     font-family: Arial;
     font-size: large;
     border-radius: 20px;
-    color: gray;
+    color: black;
     margin-right: 200px;
     margin-top: 30px;
 }
@@ -101,6 +101,8 @@
         background-color: aquamarine;
     }
 
+   
+
 .images {
     display: block;
     padding: 20px;
@@ -132,20 +134,22 @@
     border-bottom: 2px solid $gray;
     outline: 0;
     font-size: 1.3rem;
-    color: $white;
+    color: white;
     padding: 7px 0;
     background: transparent;
     transition: border-color 0.2s;
-    
-    &::placeholder {
-        color: transparent;
-    }
+    &::placeholder
 
-    &:placeholder-shown ~ .form__label {
-        font-size: 1.3rem;
-        cursor: text;
-        top: 20px;
-    }
+{
+    color: transparent;
+}
+
+.form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+}
+
 }
 
 .form__label {
@@ -158,23 +162,31 @@
 }
 
 .form__field:focus {
-    ~ .form__label {
-        position: absolute;
-        top: 0;
-        display: block;
-        transition: 0.2s;
-        font-size: 1rem;
-        color: $primary;
-        font-weight: 700;
-    }
-    padding-bottom: 6px;
+    ~ .form__label
+
+{
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $primary;
     font-weight: 700;
-    border-width: 3px;
-    border-image: linear-gradient(to right, $primary,$secondary);
-    border-image-slice: 1;
+}
+
+padding-bottom: 6px;
+font-weight: 700;
+border-width: 3px;
+border-image: linear-gradient(to right, $primary,$secondary);
+border-image-slice: 1;
 }
 /* reset input */
 .form__field {
-    &:required,&:invalid{ box-shadow: none; }
+    &:required,&:invalid
+
+{
+    box-shadow: none;
+}
+
 }
 /* demo */

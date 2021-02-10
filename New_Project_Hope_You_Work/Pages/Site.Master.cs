@@ -11,7 +11,12 @@ namespace New_Project_Hope_You_Work.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["firstName"] == null)
+            {
+                Session["firstName"] = "אורח";
+                Session["email"] = "None";
+                Session["admin"] = false;
+            }
         }
     }
 }

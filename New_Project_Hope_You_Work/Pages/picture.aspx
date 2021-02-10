@@ -21,5 +21,4 @@
         </ul>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="footer" runat="server">      
-    זהו אתר שבנה נתנאל אברהם
 </asp:Content>
