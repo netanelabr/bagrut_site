@@ -12,7 +12,7 @@ namespace New_Project_Hope_You_Work.Pages
         protected string regPage, loginPage, logoutPage, userUpdatePage, adminPage;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["firstName"] == null || Session["firstName"] == "אורח")
+            if (Session["firstName"] == null || Session["firstName"].ToString() == "אורח")
             {
                 Session["firstName"] = "אורח";
                 Session["email"] = "";

@@ -22,7 +22,7 @@ namespace New_Project_Hope_You_Work.Pages
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["email"] != null || Session["email"].ToString() != "")
+            if (Session["email"].ToString() != "")
             {
                 Response.Redirect("ErrorPage.aspx");
             }
