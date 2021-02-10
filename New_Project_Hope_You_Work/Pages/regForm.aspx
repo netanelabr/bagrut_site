@@ -22,6 +22,10 @@
                     <td>סיסמה: </td>
                     <td><input type ="password" id="password" name="password" /></td>
                 </tr>
+                <tr>
+                    <td>אימות סיסמה: </td>
+                    <td><input type ="password" id="verPassword" name="verPassword" /></td>
+                </tr>
                  <tr>
                     <td>מייל: </td>
                     <td><input type ="text" id="email" name="email" /></td>
@@ -39,8 +43,8 @@
                         <input type ="checkbox" id ="sport" name ="favCar" value ="sport" <label> ספורט </label> 
                         <input type ="checkbox" id ="superCar" name ="favCar" value ="superCar" <label> מכונית על </label> </td>
                 </tr>
-                <tr>    
-                    <td>תכתוב מה הייתה המכונית הראשונה שלך :  </td>
+                 <tr>
+                    <td>תכתוב פה על המכונית הראשונה שלך: </td>
                     <td><textarea name ="multiLine" cols ="40" rows ="5"></textarea> </td>
                 </tr>
                 <tr>
@@ -52,12 +56,14 @@
             <br />
             <br />
 
+            <p style ="font-style:oblique; color:black">  <%Response.Write(passErr); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(FirstName); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(LastName); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(Password); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(Email); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(Gender); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(FavCar); %></p>
+             <p style ="font-style:oblique; color:black">  <%Response.Write(MultiLine); %></p>
 
         </div>
     </form>

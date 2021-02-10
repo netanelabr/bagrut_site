@@ -4,8 +4,8 @@
 
 #titleContent {
     direction: rtl;
-    position: absolute;
-    width: 800px;
+    /*position: absolute;*/
+    width: 72%;
     height: 40px;
     padding: 40px;
     right: 200px;
@@ -17,6 +17,7 @@
     font-size: xx-large;
     color: black;
     border-radius: 20px;
+    margin-right: 200px;
 }
 
 #menuContent {
@@ -36,22 +37,25 @@
 
 #mainContent {
     direction: rtl;
-    position: absolute;
-    width: 800px;
+    /*position: absolute;*/
+    width: 75%;
     height: 480px;
-    padding: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
     right: 200px;
     border-width: 4px;
     top: 145px;
     background-color: bisque;
     border-radius: 25px;
     border-style: ridge;
+    margin-right: 200px;
+    margin-top: 20px;
 }
 
 #footerContent {
     direction: rtl;
-    position: absolute;
-    width: 800px;
+    /*position: absolute;*/
+    width: 75%;
     height: 20px;
     padding: 20px;
     right: 200px;
@@ -62,6 +66,8 @@
     font-size: large;
     border-radius: 20px;
     color: gray;
+    margin-right: 200px;
+    margin-top: 30px;
 }
 
 .logo {
@@ -112,10 +118,6 @@
     border-radius: 25px;
 }
 
-$primary: #11998e;
-$secondary: #38ef7d;
-$white: #fff;
-$gray: #9b9b9b;
 .form__group {
     position: relative;
     padding: 15px 0 0;
