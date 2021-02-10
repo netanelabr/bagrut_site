@@ -19,8 +19,13 @@ namespace New_Project_Hope_You_Work.Pages
         protected string DateOfBirth , DOBError;
         protected string admin;
         
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["email"] != null || Session["email"].ToString() != "")
+            {
+                Response.Redirect("ErrorPage.aspx");
+            }
             if (Request.Form["firstName"] != null)
             {
                 checkAll();

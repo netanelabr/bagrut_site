@@ -20,6 +20,10 @@ namespace New_Project_Hope_You_Work.Pages
         protected string workt;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["email"] == null || Session["email"].ToString() == "")
+            {
+                Response.Redirect("ErrorPage.aspx");
+            }
             if (Request.Form["firstName"] == null || Request.Form["firstName"] == "")//לבדוק אם זו הרצה ראשונית של האתר
             {
                 firstRun();

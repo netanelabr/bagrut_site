@@ -11,7 +11,10 @@ namespace New_Project_Hope_You_Work.Pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["admin"].ToString() != "yes")
+            {
+                Response.Redirect("ErrorPage.aspx");
+            }
         }
     }
 }
