@@ -13,19 +13,14 @@ namespace New_Project_Hope_You_Work.Pages
         protected string FirstName, LastName, FirstNError, LastNError;
         protected string Password, VerPass, PassError;
         protected string Email, EmailError;
-        protected string Gender, GenError;
-        protected string FavCar, FavCarError;
+        protected string Gender, GenError, MaleCh, FemaleCh, otherCh;
+        protected string FavCar, FavCarError, privateCh, offRodeCh, sportCh, superCarCh;
         protected string MultiLine, MultiLineError;
         protected string DateOfBirth, DOBError;
         protected string admin;
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
-
-
-
             if (Request.Form["firstName"] != null)
             {
                 checkAll();
@@ -79,9 +74,21 @@ namespace New_Project_Hope_You_Work.Pages
                 EmailError = "אנא רשום אימייל תקין";
             }
 
-            if (Request.Form["gender"] != null && Request.Form["gender"].ToString() != "")//בדיקה עם נבחר מין
+            if (Request.Form["gender"] != null && Request.Form["gender"].ToString() != "")//בדיקה אם נבחר מין
             {
                 Gender = Request.Form["gender"].ToString();
+                if (Request.Form["gender"].ToString() == "male")
+                {
+                    MaleCh = "checked";
+                }
+                else if (Request.Form["gender"].ToString() == "female")
+                {
+                    FemaleCh = "checked";
+                }
+                else
+                {
+                    otherCh = "checked";
+                }
             }
             else
             {
@@ -95,6 +102,22 @@ namespace New_Project_Hope_You_Work.Pages
                 for (int i = 0; i < h.Length; i++)
                 {
                     FavCar += h[i] ;
+                }
+                if (Request.Form["favCar"].ToString() == "private")
+                {
+                    privateCh = "checked";
+                }
+                else if (Request.Form["favCar"].ToString() == "offRoad")
+                {
+                    offRodeCh = "checked";
+                }
+                else if (Request.Form["favCar"].ToString() == "sport")
+                {
+                    sportCh = "checked";
+                }
+                else if (Request.Form["favCar"].ToString() == "superCar")
+                {
+                    superCarCh = "checked";
                 }
             }
             else

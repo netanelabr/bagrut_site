@@ -31,16 +31,16 @@
                 </tr>
                 <tr>
                     <td>מין: </td>
-                    <td><input type ="radio" id ="male" name ="gender" value ="male"<label> זכר </label>
-                    <input type ="radio" id ="female" name ="gender" value ="female" <label> נקבה </label> 
-                    <input type ="radio" id ="other" name ="gender" value ="other" <label> אחר </label>  </td> <td style="color:red"><%Response.Write(GenError); %> </td>
+                    <td><input type ="radio" id ="male" name ="gender" value ="male" <%Response.Write(MaleCh); %> /><label> זכר </label>
+                    <input type ="radio" id ="female" name ="gender" value ="female" <%Response.Write(FemaleCh); %> /><label> נקבה </label> 
+                    <input type ="radio" id ="other" name ="gender" value ="other" <%Response.Write(otherCh); %> /><label> אחר </label>  </td> <td style="color:red"><%Response.Write(GenError); %> </td>
                 </tr>
                 <tr>
                     <td>סוג המכוניות האהובות עליך: </td>
-                    <td><input type ="checkbox" id ="private" name ="favCar" value ="private" <label> פרטי </label>
-                        <input type ="checkbox" id ="offRoad" name ="favCar" value ="offRoad" <label> שטח </label>
-                        <input type ="checkbox" id ="sport" name ="favCar" value ="sport" <label> ספורט </label> 
-                        <input type ="checkbox" id ="superCar" name ="favCar" value ="superCar" <label> מכונית על </label> </td> <td style="color:red"><%Response.Write(FavCarError); %> </td>
+                    <td><input type ="checkbox" id ="private" name ="favCar" value ="private" /><label> פרטי </label>
+                        <input type ="checkbox" id ="offRoad" name ="favCar" value ="offRoad" /><label> שטח </label>
+                        <input type ="checkbox" id ="sport" name ="favCar" value ="sport" /><label> ספורט </label> 
+                        <input type ="checkbox" id ="superCar" name ="favCar" value ="superCar" /><label> מכונית על </label> </td> <td style="color:red"><%Response.Write(FavCarError); %> </td>
                 </tr>
                  <tr>
                     <td>תכתוב פה על המכונית הראשונה שלך: </td>
@@ -159,8 +159,6 @@
                         <option value="1906">1901</option>
                         <option value="1905">1900</option>
                     </select> <td style="color:red"><%Response.Write(DOBError); %> </td>
-                    <%-- לדעת איך לגרום לדטא בייס לעבוד עם אותיות בעברית
-                        --%>
                 </tr>
                 <tr>
                     <td></td>

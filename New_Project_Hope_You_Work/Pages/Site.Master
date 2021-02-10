@@ -22,7 +22,11 @@
             <br />
             <a href="Home.aspx">עמוד ראשי</a>
             <a href="picture.aspx">תמונות</a>
-            <a href="regForm.aspx">טופס הרשמה</a>
+            <%Response.Write(regPage); %>
+            <%Response.Write(loginPage); %> 
+            <%Response.Write(userUpdatePage); %> 
+            <%Response.Write(adminPage); %>
+            <%Response.Write(logoutPage); %>
             <asp:ContentPlaceHolder ID="menuAddition" runat="server">
             </asp:ContentPlaceHolder>
         </nav>
