@@ -9,16 +9,12 @@ namespace New_Project_Hope_You_Work.Pages
 {
     public partial class regForm : System.Web.UI.Page
     {
-        protected string FirstName;
-        protected string LastName;
-        protected string Password;
-        protected string verPass;
-        protected string Email;
-        protected string Gender;
-        protected string FavCar;
-        protected string MultiLine;
-        protected string passErr;
-        protected string emailErr;
+        protected string FirstName, LastName;        
+        protected string Password, VerPass, PassError;
+        protected string Email, EmailError;
+        protected string Gender, GenError;
+        protected string FavCar, FavCarError;
+        protected string MultiLine, MultiLineError;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Request.Form["firstName"] != null)
@@ -32,11 +28,11 @@ namespace New_Project_Hope_You_Work.Pages
             if (PassCheck() == "")
             {
                 Password = Request.Form["password"].ToString();
-                passErr = PassCheck();
+                PassError = PassCheck();
             }
             else
             {
-                passErr = PassCheck();
+                PassError = PassCheck();
             }
 
             if (Request.Form["email"] != null)
@@ -59,20 +55,23 @@ namespace New_Project_Hope_You_Work.Pages
         }
         string PassCheck()
         {
-            if (Password == null)
+            if (Request.Form["password"] == null || Request.Form["verPassword"] == null)
+                return "Please Reenter The Password";
+            Password = Request.Form["password"].ToString();
+            VerPass = Request.Form["verPassword"].ToString();
+            if (Password != VerPass)
             {
-                return passErr;
+                return "Passwords Must Match";
             }
-            if (Password.Length == verPass.Length)
+
+            if (Password.Length <= 3)
             {
-                if (Password.Length <= 3)
-                {
-                    return "Password Must Be Longer Than 3 Characters";
-                }
+                return "Password Must Be Longer Then Three Characters";
+            }
                 int counter = 0;
                 for (int i = 0; i < Password.Length; i++)
                 {
-                    if (Password[i] != verPass[i])
+                    if (Password[i] != VerPass[i])
                     {
                         return "Passwords Must Match";
                     }
@@ -92,13 +91,8 @@ namespace New_Project_Hope_You_Work.Pages
                 }
                 else
                     return "";
-            }
-            else if (Password.Length != verPass.Length)
-            {
-                return "Passwords Must Match";
-            }
-            else
-                return "";
+            
+           
         }
         //string EmailCheck()
         //{

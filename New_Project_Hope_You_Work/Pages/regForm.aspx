@@ -20,15 +20,15 @@
                 </tr>
                  <tr>
                     <td>סיסמה: </td>
-                    <td><input type ="password" id="password" name="password" /></td>
+                    <td><input type ="password" id="password" name="password" /></td> <td><%Response.Write(PassError); %> </td> 
                 </tr>
                 <tr>
                     <td>אימות סיסמה: </td>
-                    <td><input type ="password" id="verPassword" name="verPassword" /></td>
+                    <td><input type ="password" id="verPassword" name="verPassword" /></td> 
                 </tr>
                  <tr>
                     <td>מייל: </td>
-                    <td><input type ="text" id="email" name="email" /></td>
+                    <td><input type ="text" id="email" name="email" /></td> <%Response.Write(EmailError); %>
                 </tr>
                 <tr>
                     <td>מין: </td>
@@ -56,10 +56,11 @@
             <br />
             <br />
 
-            <p style ="font-style:oblique; color:black">  <%Response.Write(passErr); %></p>
+            
             <p style ="font-style:oblique; color:black">  <%Response.Write(FirstName); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(LastName); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(Password); %></p>
+            <p style ="font-style:oblique; color:black">  <%Response.Write(VerPass); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(Email); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(Gender); %></p>
             <p style ="font-style:oblique; color:black">  <%Response.Write(FavCar); %></p>
