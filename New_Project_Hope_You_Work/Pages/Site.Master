@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="New_Project_Hope_You_Work.Pages.Site" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <link type="text/css" rel="stylesheet" href="../StyleSheet1.css"/>
+    <meta charset="utf-8" />
+    <title>My Site</title>
+</head>
+<body>
+ <img class="logo" id="logo" src="../Images/logo.jfif" alt="Chevrolet Logo" />
+    <div id="titleContent">
+        <asp:ContentPlaceHolder ID="pageTitle" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <div id="menuContent">
+        <nav class="sideNav">
+            <br />
+            <a href="Home.aspx">עמוד ראשי</a>
+            <a href="picture.aspx">תמונות</a>
+            <a href="regForm.aspx">טופס הרשמה</a>
+            <asp:ContentPlaceHolder ID="menuAddition" runat="server">
+            </asp:ContentPlaceHolder>
+        </nav>
+    </div>
+
+    <div id="mainContent">
+        <asp:ContentPlaceHolder ID="mainArea" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+    <div id="footerContent">
+        <asp:ContentPlaceHolder ID="footer" runat="server">
+        </asp:ContentPlaceHolder> 
+    </div>
+</body>
+</html>
