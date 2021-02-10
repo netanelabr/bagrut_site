@@ -13,14 +13,14 @@ namespace New_Project_Hope_You_Work
         private SqlCommand command;
         private SqlDataAdapter adapter;
 
-        public DAL(string dbPath)
+        public DAL(string dbPath)//פעולה המקבלת מחרוזת עם נתיב מלא לקובץ מסד הנתונים ובונה דאל
         {
             this.dbPath = dbPath;
             ConnectionString = string.Format(connectionStr, this.dbPath);
             sqlConnection = new SqlConnection(ConnectionString);
         }
 
-        public DataTable GetDataTable(string sql)
+        public DataTable GetDataTable(string sql)//פעולה המקבלת מחרוזת אסקיואל מסוג סלקט מבצעת ומחזירה טבלה של דאטה טייבל
         {
             DataTable results = new DataTable();
 
@@ -31,7 +31,7 @@ namespace New_Project_Hope_You_Work
             return results;
         }
 
-        public int UpdateDB(string sql)
+        public int UpdateDB(string sql)//מקבלת מחרוזת אסקיואל מסוג הוספה מחיקה או עדכון מבצעת ומחזירה את מספר הרשומות שהושפעות מהביצוע 
         {
             int rowsEffected;
             sqlConnection = new SqlConnection(ConnectionString);

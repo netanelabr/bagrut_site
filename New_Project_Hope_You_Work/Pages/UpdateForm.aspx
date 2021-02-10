@@ -18,8 +18,12 @@
                 </tr>
                  <tr>
                     <td>סיסמה: </td>
-                    <td><input type ="text" id="password" name="password" /></td> <td style="color:red"><%Response.Write(PassError); %> </td> 
-                </tr>              
+                    <td><input type ="text" id="password" name="password" value="<%Response.Write(Password); %>" /></td> <td style="color:red"><%Response.Write(PassError); %> </td> 
+                </tr>  
+                 <tr>
+                    <td>אימות סיסמה: </td>
+                    <td><input type ="password" id="verPassword" name="verPassword" /></td> 
+                </tr>
                  <tr>
                     <td>מייל: </td>
                     <td> <%Response.Write(Email); %> </td> 
@@ -32,14 +36,14 @@
                 </tr>
                 <tr>
                     <td>סוג המכוניות האהובות עליך: </td>
-                    <td><input type ="checkbox" id ="private" name ="favCar" value ="private" /><label> פרטי </label>
-                        <input type ="checkbox" id ="offRoad" name ="favCar" value ="offRoad" /><label> שטח </label>
-                        <input type ="checkbox" id ="sport" name ="favCar" value ="sport" /><label> ספורט </label> 
-                        <input type ="checkbox" id ="superCar" name ="favCar" value ="superCar" /><label> מכונית על </label> </td> <td style="color:red"><%Response.Write(FavCarError); %> </td>
+                    <td><input type ="checkbox" id ="private" name ="favCar" value ="private" <%Response.Write(privateCh); %> /><label> פרטי </label>
+                        <input type ="checkbox" id ="offRoad" name ="favCar" value ="offRoad" <%Response.Write(offRodeCh); %> /><label> שטח </label>
+                        <input type ="checkbox" id ="sport" name ="favCar" value ="sport" <%Response.Write(sportCh); %> /><label> ספורט </label> 
+                        <input type ="checkbox" id ="superCar" name ="favCar" value ="superCar" <%Response.Write(superCarCh); %> /><label> מכונית על </label><td style="color:red"><%Response.Write(FavCarError); %> </td>
                 </tr>
                  <tr>
                     <td>תכתוב פה על המכונית הראשונה שלך: </td>
-                    <td><textarea name ="multiLine" cols ="40" rows ="5" <%--איך לעשות שגם פה ירשום לי את מה שהלקוח כבר רשם--%> ></textarea> </td> <td style="color:red"><%Response.Write(MultiLineError); %> </td>
+                    <td><textarea name ="multiLine" cols ="40" rows ="5" ><%Response.Write(MultiLine); %></textarea> </td> <td style="color:red"><%Response.Write(MultiLineError); %> </td>
                 </tr>
                 <tr>
                     <td>שנת לידה: </td>
@@ -158,6 +162,7 @@
                 <tr>
                     <td></td>
                     <td><input type ="submit" value ="שלח" /><input type ="reset"value ="ניקוי" /></td>
+                    <td><%Response.Write(workt);%></td>
                 </tr>
             </table>
         </div>

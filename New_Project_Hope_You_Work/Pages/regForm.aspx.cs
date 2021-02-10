@@ -16,7 +16,7 @@ namespace New_Project_Hope_You_Work.Pages
         protected string Gender, GenError, MaleCh, FemaleCh, otherCh;
         protected string FavCar, FavCarError, privateCh, offRodeCh, sportCh, superCarCh;
         protected string MultiLine, MultiLineError;
-        protected string DateOfBirth, DOBError;
+        protected string DateOfBirth , DOBError;
         protected string admin;
         
         protected void Page_Load(object sender, EventArgs e)
@@ -97,27 +97,26 @@ namespace New_Project_Hope_You_Work.Pages
 
             if (Request.Form["favCar"] != null)//בדיקה אם נבחר מכונית אהובה
             {
-                string[] h = Request.Form["favCar"].ToString().Split(',');
-                FavCar = "";
-                for (int i = 0; i < h.Length; i++)
+                FavCar = Request.Form["favCar"].ToString();
+                string[] a = FavCar.Split(',');
+                for (int i = 0; i < a.Length; i++)
                 {
-                    FavCar += h[i] ;
-                }
-                if (Request.Form["favCar"].ToString() == "private")
-                {
-                    privateCh = "checked";
-                }
-                else if (Request.Form["favCar"].ToString() == "offRoad")
-                {
-                    offRodeCh = "checked";
-                }
-                else if (Request.Form["favCar"].ToString() == "sport")
-                {
-                    sportCh = "checked";
-                }
-                else if (Request.Form["favCar"].ToString() == "superCar")
-                {
-                    superCarCh = "checked";
+                    if (a[i] == "private")
+                    {
+                        privateCh = "checked";
+                    }
+                    if (a[i] == "offRoad")
+                    {
+                        offRodeCh = "checked";
+                    }
+                    if (a[i] == "sport")
+                    {
+                        sportCh = "checked";
+                    }
+                    if (a[i] == "superCar")
+                    {
+                        superCarCh = "checked";
+                    }
                 }
             }
             else
